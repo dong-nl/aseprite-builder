@@ -52,7 +52,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-          os: [ macOS-latest,ubuntu-latest ]
+          os: [ macOS-latest ]
         fail-fast: false
     steps:
       - name: Install Dependencies
@@ -77,8 +77,8 @@ jobs:
             wget https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-Windows-Release-x64.zip
             unzip Skia-Windows-Release-x64.zip -d skia
           elif [[ "${{ runner.os }}" == "macOS" ]] ; then
-            wget https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-macOS-Release-x64.zip
-            unzip Skia-macOS-Release-x64.zip -d skia
+            wget https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-macOS-Release-arm64.zip
+            unzip Skia-macOS-Release-arm64.zip -d skia
           else
             wget https://github.com/aseprite/skia/releases/download/m124-08a5439a6b/Skia-Linux-Release-x64.zip
             unzip Skia-Linux-Release-x64.zip -d skia
@@ -95,13 +95,13 @@ jobs:
           export enable_scripting=on
 
           if [[ "${{ runner.os }}" == "macOS" ]] ; then
-            export skia_arch=x64
+            export skia_arch=arm64
           else
             export skia_arch=x64
           fi
 
           cmake -S . -B build -G Ninja \
-            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \              
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
             -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
             -DENABLE_TESTS=OFF \
             -DENABLE_SCRIPTING=$enable_scripting \
