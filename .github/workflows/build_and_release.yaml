@@ -95,7 +95,7 @@ jobs:
           export enable_scripting=on
 
           if [[ "${{ runner.os }}" == "macOS" ]] ; then
-            export skia_arch=x64
+            export skia_arch=arm64
           else
             export skia_arch=x64
           fi
