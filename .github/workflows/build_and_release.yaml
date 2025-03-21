@@ -101,8 +101,7 @@ jobs:
           fi
 
           cmake -S . -B build -G Ninja \
-            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-            -DCMAKE_OSX_ARCHITECTURES=x86_64 \      
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \              
             -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
             -DENABLE_TESTS=OFF \
             -DENABLE_SCRIPTING=$enable_scripting \
